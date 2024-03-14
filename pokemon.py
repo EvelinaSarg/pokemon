@@ -10,7 +10,7 @@ def get_details(poke_number):
 		url = f'https://pokeapi.co/api/v2/pokemon/{poke_number}/'
 		response = requests.get(url)
 		pokemon = response.json()
-		return pokemon['name'], pokemon['height'], pokemon['weight'], len(pokemon['moves'])
+		return pokemon['name'], pokemon['height'], pokemon['weight'], len(pokemon['moves'], pokemon['sprites']['front_default'])
 	except:
 		return 'Error', np.NAN, np.NAN, np.NAN
 	
@@ -19,7 +19,7 @@ pokemon_number = st.slider("Pick a pokemon",
 						   min_value=1,
 						   max_value=150
 						   )
-name, height, weight, moves= get_details(pokemon_number)
+name, height, weight, moves, image= get_details(pokemon_number)
 height = height*10
 height_data=pd.DataFrame({'Pokemon': ['Weedle', name, 'victreebel'], 'Heights': [3, height, 17]})
 colours=['grey', 'blue', 'red']
@@ -33,4 +33,5 @@ st.write(f'Name: {name}')
 st.write(f'Height: {height}')
 st.write(f'Weight: {weight}')
 st.write(f'Move Count: {moves}')
+st.image(image, caption=name.title(), use_column_width=True)
 st.pyplot(graph.figure)
