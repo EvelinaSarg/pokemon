@@ -36,6 +36,12 @@ graph = sns.barplot(data = height_data,
 				   x= 'Pokemon',
 				   y = 'Heights',
 				   palette = colours)
+
+st.write(f'Name: {name}')
+st.write(f'Height: {height}')
+st.write(f'Weight: {weight}')
+st.write(f'Move Count: {moves}')
+st.image(images['other']['home']['front_default'])
 if st.button('Show Random Pokemon'):
     name, height, weight, moves, images, sound = get_random_pokemon()
     st.write(f'Name: {name}')
@@ -44,10 +50,5 @@ if st.button('Show Random Pokemon'):
     st.write(f'Move Count: {moves}')
     st.image(images['other']['home']['front_default'])
     st.audio(sound['latest'], format='audio/ogg')
-st.write(f'Name: {name}')
-st.write(f'Height: {height}')
-st.write(f'Weight: {weight}')
-st.write(f'Move Count: {moves}')
-st.image(images['other']['home']['front_default'])
 st.audio(sound['latest'], format='audio/ogg')
 st.pyplot(graph.figure)
